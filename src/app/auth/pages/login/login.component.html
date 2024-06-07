@@ -1,0 +1,76 @@
+
+<section class="h-100 gradient-form" style="background-color: #eee;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
+
+                <div class="text-center">
+                  <img src="assets/imagen2.png" style="width: 185px;" alt="logo">
+                  <h4 class="mt-1 mb-5 pb-1">Somos el Grupo Especializado Salud de Oro</h4>
+                </div>
+
+
+                <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+                  <p>Por favor inicia sesión en tu cuenta</p>
+
+                  
+                  <div  class="form-outline mb-4">
+                  <label class="text-center ">Correo</label>
+                    <input type="text" id="login" class="fadeIn second form-control" formControlName="login"
+                    placeholder="ejemplo123@gmail.com">
+                    <span  *ngIf="isValidField('login')"  class="form-text text-danger">
+                      Campo requerido o formato ivalido
+                    </span>
+                  </div>
+
+                  <label for="">Password</label>
+                  <div form-outline mb-4>
+                  <input type="password"  class="fadeIn third form-control" formControlName="clave" placeholder="*********">
+
+                    <span  *ngIf="isValidField('clave')" class="form-text text-danger">
+                      El password es requerido
+                    </span>
+                  </div> 
+
+             
+                
+                <!-- Tu botón con los estilos modificados -->
+                <input type="submit" class="fadeIn fourth btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 mt-5 custom-btn" value="Iniciar sesión">
+
+                  <div class="text-center" *ngIf="spinner">
+                    <div class="spinner-border text-primary" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center pb-4">
+                    <p class="mb-0 me-2">¿No tienes una cuenta?</p>
+                    <button type="button" class="btn btn-outline-danger" [routerLink]="['/crear']">Crear</button>
+                  </div>
+                </form>
+              
+      
+
+              </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+              <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                <h4 class="mb-4">Somos más que una simple clínica</h4>
+                <p class="small mb-0">"En nuestra clínica, te ofrecemos mucho más que atención médica ordinaria.
+                  Nuestro compromiso con tu salud va más allá: combinamos experiencia, dedicación y un cuidado
+                  excepcional para ti y tu bienestar.
+                  Nos esforzamos por brindarte lo mejor en cada consulta, con un enfoque humano y personalizado que te
+                  hace sentir seguro y bien atendido."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
