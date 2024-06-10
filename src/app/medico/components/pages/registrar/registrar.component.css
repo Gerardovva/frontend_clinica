@@ -1,2 +1,18 @@
+@media (max-width: 575px) {
 
+    .leyenda {
+        display: none;
+      
 
+    }
+
+    .nombre {
+        width: 100%;
+        margin-top: 50px;
+    }
+
+    .email {
+        margin-right: 15px;
+        margin-left: 10px;
+    }
+}

@@ -8,6 +8,7 @@ import { ListarComponent } from './components/pages/listar/listar.component';
 import { ActualizarComponent } from './components/pages/actualizar/actualizar.component';
 import { RegistrarComponent } from './components/pages/registrar/registrar.component';
 import { LayoutComponent } from './components/pages/layout/layout.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { LayoutComponent } from './components/pages/layout/layout.component';
   ],
   imports: [
     CommonModule,
-    MedicoRoutingModule
+    MedicoRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class MedicoModule { }

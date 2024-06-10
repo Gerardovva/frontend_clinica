@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col mt-5">
-            <h1 class="color">Selecciona una opción</h1>
+            <h1 class="color">Bienvenido</h1>
         </div>
 
         <div class="col mt-5">
@@ -21,7 +21,7 @@
                             <li class="nav-item dropdown float-lg-right" style="color: white;" #sidenav> <!-- float-lg-right para dispositivos grandes -->
                                 <a class="nav-link dropdown-toggle " id="navbarDropdown" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    Médico
+                                    Médicos
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li class="modificacion" style="cursor: pointer;" *ngFor="let item of sidebarItems"
@@ -39,3 +39,4 @@
     </div>
 </div>
 
+<router-outlet></router-outlet>
