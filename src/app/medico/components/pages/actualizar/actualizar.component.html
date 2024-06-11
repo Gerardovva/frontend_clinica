@@ -1,1 +1,61 @@
-<p>actualizar works!</p>
+<div class="container-fluid">
+    <h1>Actualizar información</h1>
+    <form>
+        <div class="form-group">
+            <label for="">Id:</label>
+            <input type="number" class="form-control" formControlName="id" placeholder="ID">
+        </div>
+        <div class="form-group">
+            <label for="">Nombre:</label>
+            <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre">
+        </div>
+        <div class="form-group">
+            <label for="">Email:</label>
+            <input type="email" class="form-control" formControlName="email" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <label for="">Telefono:</label>
+            <input type="number" class="form-control" formControlName="telefono" placeholder="Teléfono">
+        </div>
+        <div class="form-group">
+            <label for="">Documento:</label>
+            <input type="number" class="form-control" formControlName="documento" placeholder="Documento">
+        </div>
+
+        <div formGroupName="direccion">
+            <div class="form-group">
+                <label for="">Calle:</label>
+                <input type="text" class="form-control" formControlName="calle" placeholder="Calle">
+            </div>
+            <div class="form-group">
+                <label for="">Distrito:</label>
+                <input type="text" class="form-control" formControlName="distrito" placeholder="Distrito">
+            </div>
+            <div class="form-group">
+                <label for="">Ciudad:</label>
+                <input type="text" class="form-control" formControlName="ciudad" placeholder="Ciudad">
+            </div>
+            <div class="form-group">
+                <label for="">NUmero:</label>
+                <input type="number" class="form-control" formControlName="numero" placeholder="Número">
+            </div>
+            <div class="form-group">
+                <label for="">Complemento:</label>
+                <input type="text" class="form-control" formControlName="complemento" placeholder="Complemento">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Editar</button>
+
+               
+
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+            </div>
+        </div>
+   
+    </form>
+</div>
