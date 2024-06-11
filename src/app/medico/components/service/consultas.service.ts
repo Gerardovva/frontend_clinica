@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environments';
 export class ApiService {
 
     private readonly url: string = environment.url;
-    // private readonly JWTtoken: string = "JWTtoken";
+    private readonly JWTtoken: string = "JWTtoken";
     constructor(
         private http: HttpClient,
         private localStorage: LocalStorageService,
@@ -28,13 +28,13 @@ export class ApiService {
     }
 
 
-    listar(page: number, pageSize: number): Observable<any> {
-        return this.http.get<any>(`${this.url}/medicos?page=${page}&size=${pageSize}`, {
-          headers: {
-            'Authorization': `Bearer ${this.localStorage.get("JWTtoken")}`
-          }
-        });
+  listar(page: number, pageSize: number): Observable<any> {
+    return this.http.get<any>(`${this.url}/medicos?page=${page}&size=${pageSize}`, {
+      headers: {
+        'Authorization': `Bearer ${this.localStorage.get("JWTtoken")}`
       }
+    });
+  }
 
 
 }

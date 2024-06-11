@@ -6,4 +6,36 @@ h1{
     font-size: 30px;
     background-color: black;
     height: 309x;
-}
+} 
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Oculta el sidebar por defecto */
+    width: 250px;
+    height: 100%;
+    background-color: #f8f9fa; /* Color del sidebar */
+    transition: all 0.3s ease;
+    z-index: 999;
+  }
+  
+  .sidebar.show {
+    left: 0; /* Muestra el sidebar cuando se activa */
+  }
+  
+  .container {
+    transition: margin-left 0.3s; /* Agregamos transición al contenido principal */
+  }
+  
+  .container.show {
+    margin-left: 250px; /* Desplaza el contenido principal para dejar espacio para el sidebar */
+  }
+  
+  .navbar {
+    transition: margin-left 0.3s; /* Agregamos transición al navbar */
+  }
+  
+  .navbar.d-none {
+    margin-left: -250px; /* Oculta el navbar cuando se abre el sidebar */
+  }
+  
