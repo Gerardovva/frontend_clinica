@@ -13,7 +13,8 @@ const routes: Routes = [
       {path:'registar',component:RegistrarComponent},
       {path:'listar',component:ListarComponent},
       {path:'actualizar',component:ActualizarComponent},
-      {path:'eliminar',component:EliminarComponent}
+      {path:'eliminar',component:EliminarComponent},
+      {path:'',redirectTo:'listar',pathMatch:'full'}
     ]
   }
 ];

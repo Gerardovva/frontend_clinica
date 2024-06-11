@@ -1,33 +1,66 @@
+<!-- <form [formGroup]="medicoForm" (ngSubmit)="registrarMedico()">
+    <input type="text" formControlName="nombre" placeholder="Nombre">
+    <input type="email" formControlName="email" placeholder="Email">
+    <input type="number" formControlName="telefono" placeholder="Teléfono">
+    <input type="number" formControlName="documento" placeholder="Documento">
+  
+    <select (change)="onAreaSelected($event)" class="form-select" formControlName="especialidad">
+      <option disabled [value]="">Seleccione una opción</option>
+      <option value="ORTOPEDIA">ORTOPEDIA</option>
+      <option value="CARDIOLOGIA">CARDIOLOGIA</option>
+      <option value="GINECOLOGIA">GINECOLOGIA</option>
+      <option value="PEDIATRIA">PEDIATRIA</option>
+    </select>
+  
+    <div formGroupName="direccion">
+      <input type="text" formControlName="calle" placeholder="Calle">
+      <input type="text" formControlName="distrito" placeholder="Distrito">
+      <input type="text" formControlName="ciudad" placeholder="Ciudad">
+      <input type="number" formControlName="numero" placeholder="Número">
+      <input type="text" formControlName="complemento" placeholder="Complemento">
+    </div>
+  
+    <button type="submit" [disabled]="medicoForm.invalid">Enviar</button>
+  </form> -->
+
 <div class="container ">
-    <form [formGroup]="formRegistro" (ngSubmit)="onSubmit()">
+    <form [formGroup]="medicoForm" (ngSubmit)="registrarMedico()">
         <div class="row mb-3">
             <div class="col">
-                <h3>Nuevo perfil</h3>
+                <h3 class="text-center">Nuevo registro</h3>
             </div>
         </div>
         <!-- profesioanl -->
         <div class="row mb-3">
-            <div class="col ">
+            <div class="col-12">
                 <h1>Profesional</h1>
             </div>
         </div>
 
-        <div class="row mb-3">
+        <!-- <div class="row mb-3">
             <div class="col-12 col-md-6 ">
                 <label class="form-label mb-0 leyenda">Nombre:</label>
                 <input class=" form-control nombre2" formControlName="nombre" type="text" placeholder="Nombre completo">
                 <span *ngIf="isValidField('nombre')" class="form-text text-danger">
-                    El username no puede estar vacio
+                    El usuario no puede estar vacio
                 </span>
-
-               
             </div>
+        </div> -->
+        <div class="row mt-3">
+
+            <label class="form-label mb-0 leyenda margen">Nombre:</label>
+            <input class=" form-control email margen" type="text" formControlName="email" placeholder="Nombre completo">
+            <span *ngIf="isValidField('nombre')" class="form-text text-danger spann">
+                El campo no puede estar vacio
+            </span>
         </div>
 
-        <div class="row mb-3">
+
+        <div class="row mb-3 mt-5">
             <div class="col-6 col-md-6">
-                <select (change)="onAreaSelected($event)" class="form-select" formControlName="especialidad" >
-                    <option selected>Seleccione una opcion</option>
+
+                <select (change)="onAreaSelected($event)" class="form-select" formControlName="especialidad">
+                    <option disabled [value]="">Seleccione una opción</option>
                     <option value="ORTOPEDIA">ORTOPEDIA</option>
                     <option value="CARDIOLOGIA">CARDIOLOGIA</option>
                     <option value="GINECOLOGIA">GINECOLOGIA</option>
@@ -40,10 +73,15 @@
 
             </div>
             <div class="col-6 col-md-6">
-                <div class="col-6 col-md-6">
+                <!-- <div class="col-6 col-md-6">
                     <input class="form-control" type="file" (change)="onFileSelected($event)" accept=".jpg,.png,.gif">
                     <button class="btn btn-primary mt-2" type="submit">Subir Archivo</button>
-                </div>                
+                </div>   -->
+                <input class="form-control" formControlName="documento" type="text" placeholder="documento">
+
+                <span *ngIf="isValidField('documento')" class="form-text text-danger">
+                    el valor del cocunemto es unico
+                </span>
             </div>
         </div>
 
@@ -57,20 +95,18 @@
 
         <div class="row mt-3">
 
-            <label class="form-label mb-0 leyenda">Email:</label>
-            <input class=" form-control email " type="text" formControlName="email" placeholder="Nombre completo">
-            <span *ngIf="isValidField('email')" class="form-text text-danger">
+            <label class="form-label mb-0 leyenda margen">Email:</label>
+            <input class=" form-control email margen" type="text" formControlName="email" placeholder="Email">
+            <span *ngIf="isValidField('email')" class="form-text text-danger spann">
                 campo requerido o formato invalido
             </span>
-
-
         </div>
 
-        <div class="row">
+        <div class="row mt-3">
             <label class="form-label mb-0 mt-4 leyenda">Telefono:</label>
             <input class=" form-control mt-2 email " formControlName="telefono" type="number" placeholder="Telefono">
 
-            <span *ngIf="isValidField('telefono')" class="form-text text-danger">
+            <span *ngIf="isValidField('telefono')" class="form-text text-danger spann">
                 campo requerido
             </span>
 
@@ -79,42 +115,47 @@
 
 
         <!-- direccion -->
-        <div class="row mt-3">
-            <div class="col ">
-                <h1>Dirección</h1>
+        <div formGroupName="direccion">
+
+            <div class="row mt-3">
+                <div class="col ">
+                    <h1>Dirección</h1>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <label class="form-label mb-0 leyenda "> Calle:</label>
+                <input class=" form-control email " type="text" placeholder="Calle" formControlName="calle">
+                <span *ngIf="isValidField('direccion')" class="form-text text-danger">
+                    campo requerido
+                </span>
+
+            </div>
+            <div class="row">
+                <div class="col-6 mt-3">
+                    <label class="form-label mb-0 leyenda ">Numero:</label>
+                    <input class="form-control  " formControlName="numero" type="number" placeholder="Numero">
+                </div>
+                <div class="col-6 mt-3">
+                    <label class="form-label mb-0 leyenda">Complemento:</label>
+                    <input class="form-control" formControlName="complemento" type="text" placeholder="Complemento">
+                </div>
+
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-6 mt-3">
+                    <label class="form-label mb-0 leyenda">Ciudad:</label>
+                    <input class=" form-control" type="text" placeholder="Ciudad" formControlName="ciudad">
+                </div>
+
+                <div class="col-6 mt-3">
+                    <label class="form-label mb-0 leyenda">distrito:</label>
+                    <input class="form-control" formControlName="distrito" type="text" placeholder="Distrito">
+                </div>
             </div>
         </div>
-        <div class="row mt-3">
-            <label class="form-label mb-0 leyenda ">Direccion:</label>
-            <input class=" form-control email " type="text" placeholder="Dirección">
-            <span *ngIf="isValidField('direccion')" class="form-text text-danger">
-                campo requerido
-            </span>
 
-        </div>
-
-
-
-        <div class="row">
-            <div class="col-6 mt-3">
-                <label class="form-label mb-0 leyenda ">Numero:</label>
-                <input class="form-control  " formControlName="numero" type="number" placeholder="Numero">
-            </div>
-            <div class="col-6 mt-3">
-                <label class="form-label mb-0 leyenda">Complemento:</label>
-                <input class="form-control" formControlName="complemento" type="text" placeholder="Complemento">
-            </div>
-            
-        </div>
-
-
-        <div class="row mt-3">
-            <label class="form-label mb-0 leyenda">Ciudad:</label>
-            <input class=" form-control email " type="text" placeholder="Ciudad" formControlName="ciudad">
-
-        </div>
-
-        <input type="submit" class=" btn btn-primary  gradient-custom-2 mb-5 mt-5 custom-btn" value="Iniciar sesión">
+        <input type="submit" class=" btn btn-primary  gradient-custom-2 mb-5 mt-3 custom-btn" value="Registrar">
 
     </form>
 

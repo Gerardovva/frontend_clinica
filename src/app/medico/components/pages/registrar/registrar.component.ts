@@ -1,77 +1,73 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 import { ApiService } from './../../service/consultas.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { ValidatorsService } from '../../service/validator.service';
+import { validadorService } from './../../../../components/services/validador.service';
 
 @Component({
-  selector: 'app-registrar',
+  selector: 'app-tu-componente',
   templateUrl: './registrar.component.html',
   styleUrls: ['./registrar.component.css']
 })
-export class RegistrarComponent {
-  public formRegistro: FormGroup;
-
-  selectedFile?: File;
-  selectedEspecialidad: string = '';
+export class RegistrarComponent implements OnInit {
+  medicoForm!: FormGroup;
 
   constructor(
-    private apiService: ApiService,
     private fb: FormBuilder,
+    private apiService: ApiService,
     private validadorService: ValidatorsService,
-  ) {
-    this.formRegistro = this.fb.group({
-      nombre: ['', [Validators.required]],
+  ) { }
+
+  ngOnInit(): void {
+    this.medicoForm = this.fb.group({
+      nombre: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern(this.validadorService.email)]],
-      telefono: ['', [Validators.required]],
-      documento: ['', [Validators.required, Validators.maxLength(10)]],
-      especialidad: ['', [Validators.required]],
+      telefono: ['', Validators.required],
+      documento: ['', Validators.required],
+      especialidad: ['', Validators.required],
       direccion: this.fb.group({
-        calle: ['', Validators.required],
+        calle: [''],
         distrito: [''],
-        ciudad: ['', Validators.required],
-        numero: ['', Validators.required],
+        ciudad: [''],
+        numero: [''],
         complemento: ['']
       })
     });
   }
 
-  onSubmit() {
-    if (this.formRegistro.valid) {
-      this.apiService.registroMedico(this.formRegistro.value)
-        .subscribe({
-          next: data => {
-            console.log("Peticion post", data);
-            this.formRegistro.reset(); // Limpiar el formulario después del envío exitoso
-          },
-          error: error => {
-            console.error("Error en la petición:", error);
-      
-          }
-        });
+
+  registrarMedico(): void {
+    if (this.medicoForm.valid) {
+      const medicoData = this.medicoForm.value;
+      this.apiService.registroMedico(medicoData).subscribe({
+        next: (response) => {
+          console.log("Completado");
+          console.log('Médico registrado exitosamente:', response);
+        },
+        error: (error) => {
+          console.error('Error al registrar médico:', error);
+        },
+        complete: () => {
+          console.log("Tarea realizada");
+        }
+      });
     } else {
-      this.formRegistro.markAllAsTouched();
+      this.medicoForm.markAllAsTouched();
     }
   }
 
-  onAreaSelected(event: any) {
-    this.selectedEspecialidad = event.target.value;
-  }
 
+
+  onAreaSelected(event: any): void {
+    const especialidadControl = this.medicoForm.get('especialidad');
+    if (especialidadControl) {
+      especialidadControl.setValue(event.target.value.toUpperCase());
+    }
+  }
   isValidField(field: string) {
-    return this.validadorService.isValidField(this.formRegistro, field);
+    return this.validadorService.isValidField(this.medicoForm, field);
   }
 
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
-  }
-
-  onSubmits() {
-    if (this.selectedFile) {
-      console.log('Archivo seleccionado:', this.selectedFile);
-      // Aquí puedes enviar el archivo al servidor utilizando HttpClient, por ejemplo
-      // Reinicia el estado del campo de archivo seleccionado después de la carga
-    } else {
-      console.log('No se ha seleccionado ningún archivo.');
-    }
-  }
-}
+}//cierre clase

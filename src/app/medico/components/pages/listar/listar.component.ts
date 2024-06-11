@@ -11,7 +11,7 @@ export class ListarComponent implements OnInit {
   totalPages: number = 0; // Número total de páginas de médicos
   currentPage: number = 0; // Número de la página actual
   totalElements: number = 0; // Total de elementos (médicos) en la base de datos
-  pageSize: number = 5; // Tamaño de página predeterminado
+  pageSize: number = 10; // Tamaño de página predeterminado
 
   constructor(private apiService: ApiService) { } // Inyección de dependencia del servicio ApiService
 

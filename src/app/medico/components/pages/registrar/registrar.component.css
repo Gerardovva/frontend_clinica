@@ -1,18 +1,19 @@
 @media (max-width: 575px) {
-
     .leyenda {
-        display: none;
-      
-
+        display: none;  
     }
 
-    .nombre {
+    .nombre2 {
         width: 100%;
-        margin-top: 50px;
+      
     }
 
-    .email {
-        margin-right: 15px;
-        margin-left: 10px;
+    .email,
+    .telefono {
+        margin: 0 10px; /* Ajustar márgenes de email y teléfono */
+    }
+
+    .spann {
+        margin-left: 3%; /* Agregar margen izquierdo al mensaje de error */
     }
 }
