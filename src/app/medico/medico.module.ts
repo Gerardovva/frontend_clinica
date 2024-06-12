@@ -9,11 +9,11 @@ import { ActualizarComponent } from './components/pages/actualizar/actualizar.co
 import { RegistrarComponent } from './components/pages/registrar/registrar.component';
 import { LayoutComponent } from './components/pages/layout/layout.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
   declarations: [
-
     RegistrarComponent,
     EliminarComponent,
     ListarComponent,
@@ -23,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     MedicoRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule,
   ]
 })
 export class MedicoModule { }

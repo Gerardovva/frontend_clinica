@@ -23,7 +23,7 @@
     <button type="submit" [disabled]="medicoForm.invalid">Enviar</button>
   </form> -->
 
-<div class="container ">
+  <div class="container ">
     <form [formGroup]="medicoForm" (ngSubmit)="registrarMedico()">
         <div class="row mb-3">
             <div class="col">
@@ -49,7 +49,7 @@
         <div class="row mt-3">
 
             <label class="form-label mb-0 leyenda margen">Nombre:</label>
-            <input class=" form-control email margen" type="text" formControlName="email" placeholder="Nombre completo">
+            <input class=" form-control email margen" type="text" formControlName="nombre" placeholder="Nombre completo">
             <span *ngIf="isValidField('nombre')" class="form-text text-danger spann">
                 El campo no puede estar vacio
             </span>

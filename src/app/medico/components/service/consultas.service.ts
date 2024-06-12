@@ -7,25 +7,25 @@ import { environment } from 'src/environments/environments';
 @Injectable({ providedIn: 'root' })
 export class ApiService {
 
-    private readonly url: string = environment.url;
-    private readonly JWTtoken: string = "JWTtoken";
-    constructor(
-        private http: HttpClient,
-        private localStorage: LocalStorageService,
+  private readonly url: string = environment.url;
+  private readonly JWTtoken: string = "JWTtoken";
+  constructor(
+    private http: HttpClient,
+    private localStorage: LocalStorageService,
 
-    ) { }
+  ) { }
 
-    registroMedico(data: any): Observable<any> {
-        return this.http.post<any>(
-            `${this.url}/medicos`,
-            data,
-            {
-                headers: {
-                    'Authorization': `Bearer ${this.localStorage.get("JWTtoken")}`
-                }
-            }
-        );
-    }
+  registroMedico(data: any): Observable<any> {
+    return this.http.post<any>(
+      `${this.url}/medicos`,
+      data,
+      {
+        headers: {
+          'Authorization': `Bearer ${this.localStorage.get("JWTtoken")}`
+        }
+      }
+    );
+  }
 
 
   listar(page: number, pageSize: number): Observable<any> {
@@ -36,5 +36,16 @@ export class ApiService {
     });
   }
 
+  actualizarMedico(medicoData: any): Observable<any> {
+    return this.http.put<any>(`${this.url}/medicos`, medicoData, {
+      headers: {
+        'Authorization': `Bearer ${this.localStorage.get("JWTtoken")}`
+      }
+    })
 
-}
+  }
+
+
+
+
+}//cierre clase

@@ -1,10 +1,8 @@
-
 import { ApiService } from './../../service/consultas.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { ValidatorsService } from '../../service/validator.service';
-import { validadorService } from './../../../../components/services/validador.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-tu-componente',
@@ -13,6 +11,8 @@ import { validadorService } from './../../../../components/services/validador.se
 })
 export class RegistrarComponent implements OnInit {
   medicoForm!: FormGroup;
+  registroExitoso: boolean = false;
+  
 
   constructor(
     private fb: FormBuilder,
@@ -37,20 +37,40 @@ export class RegistrarComponent implements OnInit {
     });
   }
 
-
   registrarMedico(): void {
     if (this.medicoForm.valid) {
       const medicoData = this.medicoForm.value;
       this.apiService.registroMedico(medicoData).subscribe({
         next: (response) => {
-          console.log("Completado");
-          console.log('Médico registrado exitosamente:', response);
+          // console.log("Completado");
+          // console.log('Médico registrado exitosamente:', response);
+        
+          this.registroExitoso = true; // Marca que el registro fue exitoso
+          this.medicoForm.reset(); // Resetea el formulario
         },
         error: (error) => {
           console.error('Error al registrar médico:', error);
+          // console.log(medicoData);
         },
         complete: () => {
           console.log("Tarea realizada");
+          Swal.fire({
+            title: "¿Estás seguro de realizar el registro?",
+            text: "¡No podrás revertir esto!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, registrar"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: "Registro exitoso!",
+                text: "El medico a sido registrado.",
+                icon: "success"
+              });
+            }
+          });
         }
       });
     } else {
@@ -58,14 +78,13 @@ export class RegistrarComponent implements OnInit {
     }
   }
 
-
-
   onAreaSelected(event: any): void {
     const especialidadControl = this.medicoForm.get('especialidad');
     if (especialidadControl) {
       especialidadControl.setValue(event.target.value.toUpperCase());
     }
   }
+
   isValidField(field: string) {
     return this.validadorService.isValidField(this.medicoForm, field);
   }
