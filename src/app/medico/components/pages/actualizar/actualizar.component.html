@@ -1,18 +1,18 @@
 <!-- actualizar.component.html -->
 <div class="container">
 
-    <h1>Actualizar información</h1>
-    <form [formGroup]="formActualizarMedico" (ngSubmit)="buscarPorNombre(formActualizarMedico.value.nombre)">
-      <div class="form-group">
-        <label for="nombre">Nombre:</label>
-        <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Nombre de médico"
-          (keyup)="buscarPorNombre($event)">
+  <h1>Actualizar información</h1>
+  <form [formGroup]="formActualizarMedico" (ngSubmit)="buscarPorNombre(formActualizarMedico.value.nombre)">
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Nombre de médico"
+        (keyup)="buscarPorNombre($event)">
 
-        <button class="btn btn-primary mt-3">Buscar</button>
-      </div>
-    </form>
-    <!-- tabla  -->
-    <div class="table-responsive">
+      <button class="btn btn-primary mt-3">Buscar</button>
+    </div>
+  </form>
+  <!-- tabla  -->
+  <div class="table-responsive">
     <table class="table  table-bordered mt-5">
       <thead class="table-primary">
         <tr>
@@ -25,28 +25,48 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let medico of medicos | paginate: { itemsPerPage: 6, currentPage: currentPage }; let i = index">
-          <th scope="row">{{ (currentPage - 1) * 5 + i + 1 }}</th>
-          <td>{{ medico.nombre }}</td>
-          <td>{{ medico.especialidad }}</td>
-          <td>{{ medico.documento }}</td>
-          <td>{{ medico.email }}</td>
-          <!-- Agrega un botón "Editar" en cada fila de la tabla -->
-          <td>
-            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal"
-              (click)="editarMedico(medico)" data-bs-whatever="@mdo"> <i class="fas fa-edit"></i>
-            </button>
-          </td>
 
-        </tr>
-      </tbody>
+        <tbody>
+          <tr *ngFor="let medico of medicos; let i = index">
+            <th scope="row">{{ (currentPage - 1) * pageSize + i + 1 }}</th>
+            <td>{{ medico.nombre }}</td>
+            <td>{{ medico.especialidad }}</td>
+            <td>{{ medico.documento }}</td>
+            <td>{{ medico.email }}</td>
+            <!-- Agrega un botón "Editar" en cada fila de la tabla -->
+            <td>
+              <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                (click)="editarMedico(medico)" data-bs-whatever="@mdo"> <i class="fas fa-edit"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      
     </table>
-    <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+
+
+
+       <!-- Controles de paginación -->
+       <div class="paginacion">
+        <nav aria-label="Page navigation border">
+          <ul class="pagination justify-content-center">
+            <li class="page-item" [class.disabled]="currentPage === 1">
+              <a class="page-link" tabindex="-1" (click)="onPageChange(currentPage - 1)">Anterior</a>
+            </li>
+            <li class="page-item" *ngFor="let page of totalPagesArray()" [class.active]="page === currentPage">
+              <a class="page-link" (click)="onPageChange(page)">{{ page }}</a>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage === totalPages">
+              <a class="page-link" (click)="onPageChange(currentPage + 1)">Siguiente</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
   </div>
 </div>
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -55,27 +75,39 @@
       </div>
       <div class="modal-body">
         <form class="form-group" [formGroup]="medicoForm" (ngSubmit)="guardarCambios()">
-          <input class="form-control mt-2" type="text" formControlName="id" placeholder="id">
-          <input class="form-control mt-2" type="text" formControlName="nombre" placeholder="Nombre">
-          <input class="form-control mt-2" type="email" formControlName="email" placeholder="Email">
-          <input class="form-control mt-2" type="text" formControlName="especialidad" placeholder="Especialidad">
-          <input class="form-control mt-2" type="text" formControlName="documento" placeholder="documento">
-          <input class="form-control mt-2" type="number" formControlName="telefono" placeholder="telefono">
+          <label class="form-label">id:</label>
+          <input class="form-control " type="number" formControlName="id" placeholder="id" readonly>
+          <label class="form-label ">Nombre:</label>
+          <input class="form-control " type="text" formControlName="nombre" placeholder="Nombre">
+                <label class="form-label">Email:</label>
+          <input class="form-control " type="email" formControlName="email" placeholder="Email">
+                <label class="form-label">Especialidad:</label>
+          <input class="form-control " type="text" formControlName="especialidad" placeholder="Especialidad">
+                <label class="form-label">Documento:</label>
+          <input class="form-control " type="text" formControlName="documento" placeholder="documento">
+                <label class="form-label">Telefono:</label>
+          <input class="form-control " type="number" formControlName="telefono" placeholder="telefono">
+           
           <div formGroupName="direccion">
-            <input class="form-control mt-2" type="text" formControlName="calle" placeholder="calle">
-            <input class="form-control mt-2" type="text" formControlName="distrito" placeholder="distrito">
-            <input class="form-control mt-2" type="text" formControlName="ciudad" placeholder="ciudad">
-            <input class="form-control mt-2" type="number" formControlName="numero" placeholder="numero">
-            <input class="form-control mt-2" type="text" formControlName="complemento" placeholder="complemento">
+                  <label class="form-label">Calle:</label>
+            <input class="form-control " type="text" formControlName="calle" placeholder="calle">
+                  <label class="form-label">Distrito:</label>
+            <input class="form-control " type="text" formControlName="distrito" placeholder="distrito">
+                  <label class="form-label">Ciudad:</label>
+            <input class="form-control " type="text" formControlName="ciudad" placeholder="ciudad">
+                  <label class="form-label">Numero:</label>
+            <input class="form-control " type="number" formControlName="numero" placeholder="numero">
+                  <label class="form-label">Complemento:</label>
+            <input class="form-control " type="text" formControlName="complemento" placeholder="complemento">
           </div>
-          <button type="submit" class="btn btn-primary mt-3">Guardar Cambios</button>
 
-        </form>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+          </div>
+        </form>   
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-
-      </div>
+     
     </div>
   </div>
 </div>

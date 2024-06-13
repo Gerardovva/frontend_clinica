@@ -22,7 +22,7 @@ export class RegistrarComponent implements OnInit {
 
   ngOnInit(): void {
     this.medicoForm = this.fb.group({
-      nombre: ['', Validators.required],
+      nombre: ['', Validators.required,Validators.pattern(this.validadorService.nombreApellido)],
       email: ['', [Validators.required, Validators.pattern(this.validadorService.email)]],
       telefono: ['', Validators.required],
       documento: ['', Validators.required],

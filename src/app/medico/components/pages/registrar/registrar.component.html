@@ -37,19 +37,10 @@
             </div>
         </div>
 
-        <!-- <div class="row mb-3">
-            <div class="col-12 col-md-6 ">
-                <label class="form-label mb-0 leyenda">Nombre:</label>
-                <input class=" form-control nombre2" formControlName="nombre" type="text" placeholder="Nombre completo">
-                <span *ngIf="isValidField('nombre')" class="form-text text-danger">
-                    El usuario no puede estar vacio
-                </span>
-            </div>
-        </div> -->
         <div class="row mt-3">
 
             <label class="form-label mb-0 leyenda margen">Nombre:</label>
-            <input class=" form-control email margen" type="text" formControlName="nombre" placeholder="Nombre completo">
+            <input class=" form-control email margen" type="text" formControlName="nombre" placeholder="Nombre completo" required>
             <span *ngIf="isValidField('nombre')" class="form-text text-danger spann">
                 El campo no puede estar vacio
             </span>
