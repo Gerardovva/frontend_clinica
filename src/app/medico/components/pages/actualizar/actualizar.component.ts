@@ -54,7 +54,7 @@ export class ActualizarComponent implements OnInit {
   }
 
   listaMedico(page: number) {
-    this.apiService.listar(page, this.pageSize).subscribe({
+    this.apiService.listarMedico(page, this.pageSize).subscribe({
       next: (response) => {
         this.medicos = response.content;
         this.totalPages = response.totalPages; // Actualiza el número total de páginas
@@ -82,7 +82,7 @@ export class ActualizarComponent implements OnInit {
     }
   }
 
-  editarMedico(medico: any): void {
+  datosMedico(medico: any): void {
     // console.log('Editar médico:', medico);
 
     // Establece los datos del médico seleccionado en el formulario de edición

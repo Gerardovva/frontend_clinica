@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-layout',
@@ -14,28 +14,28 @@ export class LayoutComponent {
     { label: 'Eliminar', url: './eliminar' },
   ];
 
-  @ViewChild('navbarNav') navbarNav: any; // Obtén una referencia al elemento con la directiva #navbarNav
+  // Referencia al elemento navbarNav del HTML
+  @ViewChild('navbarNav') navbarNav: ElementRef | undefined;
 
-  ngAfterViewInit() {
-    // Verifica si navbarNav está definido antes de acceder a nativeElement
-    if (this.navbarNav && this.navbarNav.nativeElement) {
-      console.log('Elemento navbarNav encontrado:', this.navbarNav.nativeElement);
-    } else {
-      // console.error('Elemento navbarNav no encontrado.');
-    }
-  }
+  // Variable para rastrear si el menú está colapsado o no
+  isNavbarCollapsed = true;
 
+  constructor(private elementRef: ElementRef) { }
+ 
+  // Función para alternar el estado de colapso del menú
   toggleNavbar() {
-    // Verifica si navbarNav está definido antes de acceder a nativeElement
-    if (this.navbarNav && this.navbarNav.nativeElement) {
-      if (this.navbarNav.nativeElement.classList.contains('show')) {
-        this.navbarNav.nativeElement.classList.remove('show');
-      } else {
-        this.navbarNav.nativeElement.classList.add('show');
-      }
-    } else {
-      // console.error('Elemento navbarNav no encontrado.');
+    this.isNavbarCollapsed = !this.isNavbarCollapsed;
+  }
+
+  // HostListener para detectar clics fuera del menú y cerrarlo en consecuencia
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event) {
+    // Si el menú está colapsado o si no se ha inicializado la referencia al elemento navbarNav,
+    // o si el evento de clic proviene de un elemento fuera del menú, se cierra el menú.
+    if (this.isNavbarCollapsed || !this.navbarNav || !this.navbarNav.nativeElement.contains(event.target)) {
+      this.isNavbarCollapsed = true;
     }
   }
+
 
 }

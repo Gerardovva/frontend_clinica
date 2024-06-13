@@ -3,7 +3,7 @@
 
 /* Estilos generales */
 body, .container-fluid {
-    background-color: #023e8a; /* Color de fondo */
+    background-color: #0d6efd; /* Color de fondo */
     color: #ffffff; /* Color del texto */
 }
 
@@ -23,7 +23,7 @@ nav {
 
 /* Estilos de los elementos modificados */
 .modificacion {
-    background-color: #023e8a; /* Color de fondo del elemento modificado */
+    background-color: #0d6efd; /* Color de fondo del elemento modificado */
     cursor: pointer;
 }
 
@@ -34,7 +34,7 @@ nav {
 
 /* Estilos del menú desplegable */
 .dropdown-menu {
-    background-color: #023e8a; /* Cambia el color de fondo del menú desplegable */
+    background-color: #0d6efd; /* Cambia el color de fondo del menú desplegable */
 }
 
 .dropdown-menu li {

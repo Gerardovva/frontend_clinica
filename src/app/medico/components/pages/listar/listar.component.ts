@@ -23,7 +23,7 @@ export class ListarComponent implements OnInit {
   // Método para cargar la lista de médicos desde el servicio ApiService
   loadMedicos(page: number): void {
     // Llamada al método listar del servicio ApiService, pasando el número de página y el tamaño de página
-    this.apiService.listar(page, this.pageSize).subscribe({
+    this.apiService.listarMedico(page, this.pageSize).subscribe({
       next: (data: any) => { // Función que se ejecuta al recibir la respuesta del servicio
         this.medicos = data.content; // Actualiza el arreglo de médicos con los datos recibidos
         this.totalPages = data.totalPages; // Actualiza el número total de páginas

@@ -1,1 +1,98 @@
-<p>eliminar works!</p>
+<!-- actualizar.component.html -->
+<div class="container">
+
+  <h1>Eliminar medico</h1>
+  <form [formGroup]="formActualizarMedico" (ngSubmit)="buscarPorNombre(formActualizarMedico.value.nombre)">
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Nombre de médico"
+        (keyup)="buscarPorNombre($event)">
+
+      <button class="btn btn-primary mt-3">Buscar</button>
+    </div>
+  </form>
+  <!-- tabla  -->
+  <div class="table-responsive">
+    <table class="table  table-bordered mt-5">
+      <thead class="table-primary">
+        <tr>
+          <th scope="col">Numero</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Especialidad</th>
+          <th scope="col">Documento</th>
+          <th scope="col">Email</th>
+          <th scope="col">Editar</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      <tbody>
+        <tr *ngFor="let medico of medicos; let i = index">
+          <th scope="row">{{ (currentPage - 1) * pageSize + i + 1 }}</th>
+          <td>{{ medico.nombre }}</td>
+          <td>{{ medico.especialidad }}</td>
+          <td>{{ medico.documento }}</td>
+          <td>{{ medico.email }}</td>
+          <!-- Agrega un botón "Editar" en cada fila de la tabla -->
+          <td>
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal"
+              (click)="editarMedico(medico)" data-bs-whatever="@mdo"> <i class="fas fa-trash-alt icono-rojo"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+
+
+    <!-- Controles de paginación -->
+    <div class="paginacion">
+      <nav aria-label="Page navigation border">
+        <ul class="pagination justify-content-center">
+          <li class="page-item" [class.disabled]="currentPage === 1">
+            <a class="page-link" tabindex="-1" (click)="onPageChange(currentPage - 1)">Anterior</a>
+          </li>
+          <li class="page-item" *ngFor="let page of totalPagesArray()" [class.active]="page === currentPage">
+            <a class="page-link" (click)="onPageChange(page)">{{ page }}</a>
+          </li>
+          <li class="page-item" [class.disabled]="currentPage === totalPages">
+            <a class="page-link" (click)="onPageChange(currentPage + 1)">Siguiente</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar Medico</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="form-group" [formGroup]="medicoForm" (ngSubmit)="eliminarMedico(medicoForm.value.id)">
+          <label class="form-label">id:</label>
+          <input class="form-control " type="number" formControlName="id" placeholder="id" readonly>
+          <label class="form-label ">Nombre:</label>
+          <input class="form-control " type="text" formControlName="nombre" placeholder="Nombre">
+          <label class="form-label">Email:</label>
+          <input class="form-control " type="email" formControlName="email" placeholder="Email">
+          <label class="form-label">Especialidad:</label>
+          <input class="form-control " type="text" formControlName="especialidad" placeholder="Especialidad">
+          <label class="form-label">Documento:</label>
+          <input class="form-control " type="text" formControlName="documento" placeholder="documento">
+  
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

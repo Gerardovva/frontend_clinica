@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environments';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  private readonly url = environment.url;
+  private readonly url = environment.medico.url;
   private readonly JWTtoken: string = "JWTtoken";
 
   constructor(

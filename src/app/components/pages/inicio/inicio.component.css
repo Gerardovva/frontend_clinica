@@ -1,17 +1,10 @@
-.inicio {
-    background-color: #f0f0f0; /* Color de fondo claro */
-    margin: 20px;
-    min-height: 50vh;
-    border-radius: 15px;
+.bienvenido{
+    font-size: 5rem;
+    text-align: center;
+    margin-top: 5%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.header {
-    margin: 10px;
-    text-align: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: xx-large;
-    color: #333; /* Color de texto oscuro */
-}
 
 .clock {
     display: grid;
@@ -25,7 +18,7 @@
 }
 
 .clock p {
-    color: #666; /* Color de texto gris oscuro */
+ /*    color: #666; Color de texto gris oscuro */
     font-size: 2rem;
 }
 
@@ -41,7 +34,7 @@
     font-weight: bold;
     font-size: 75px;
     text-align: center;
-    color: #444; /* Color de texto gris */
+   
 }
 
 .ampm {
@@ -57,6 +50,9 @@
 }
 
 @media (max-width: 500px) {
+    .bienvenido{
+        font-size: 3rem;
+    }
     .mishoras {
         font-size: 50px;
     }

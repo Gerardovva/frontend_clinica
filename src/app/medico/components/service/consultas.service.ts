@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environments';
 @Injectable({ providedIn: 'root' })
 export class ApiService {
 
-  private readonly url: string = environment.url;
+  private readonly url: string = environment.medico.url;
   private readonly JWTtoken: string = "JWTtoken";
   constructor(
     private http: HttpClient,
@@ -28,7 +28,7 @@ export class ApiService {
   }
 
 
-  listar(page: number, pageSize: number): Observable<any> {
+  listarMedico(page: number, pageSize: number): Observable<any> {
     return this.http.get<any>(`${this.url}/medicos?page=${page}&size=${pageSize}`, {
       headers: {
         'Authorization': `Bearer ${this.localStorage.get("JWTtoken")}`
@@ -41,9 +41,17 @@ export class ApiService {
       headers: {
         'Authorization': `Bearer ${this.localStorage.get("JWTtoken")}`
       }
-    })
-
+    });
   }
+
+
+  eliminarMedico(id: any): Observable<any> {
+    return this.http.delete<any>(`${this.url}/medicos/${id}`, { 
+      headers: { 'Authorization': `Bearer ${this.localStorage.get("JWTtoken")}` }
+     });
+  }
+
+
 
 
 

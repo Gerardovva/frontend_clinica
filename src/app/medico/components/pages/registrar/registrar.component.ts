@@ -22,10 +22,10 @@ export class RegistrarComponent implements OnInit {
 
   ngOnInit(): void {
     this.medicoForm = this.fb.group({
-      nombre: ['', Validators.required,Validators.pattern(this.validadorService.nombreApellido)],
+      nombre: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern(this.validadorService.email)]],
       telefono: ['', Validators.required],
-      documento: ['', Validators.required],
+      documento: ['',[ Validators.required,Validators.maxLength(6)]],
       especialidad: ['', Validators.required],
       direccion: this.fb.group({
         calle: [''],
@@ -37,38 +37,35 @@ export class RegistrarComponent implements OnInit {
     });
   }
 
+
   registrarMedico(): void {
     if (this.medicoForm.valid) {
       const medicoData = this.medicoForm.value;
-      this.apiService.registroMedico(medicoData).subscribe({
-        next: (response) => {
-          // console.log("Completado");
-          // console.log('Médico registrado exitosamente:', response);
-        
-          this.registroExitoso = true; // Marca que el registro fue exitoso
-          this.medicoForm.reset(); // Resetea el formulario
-        },
-        error: (error) => {
-          console.error('Error al registrar médico:', error);
-          // console.log(medicoData);
-        },
-        complete: () => {
-          console.log("Tarea realizada");
-          Swal.fire({
-            title: "¿Estás seguro de realizar el registro?",
-            text: "¡No podrás revertir esto!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Si, registrar"
-          }).then((result) => {
-            if (result.isConfirmed) {
+      Swal.fire({
+        title: "¿Estás seguro de realizar el registro?",
+        text: "¡No podrás revertir esto!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, registrar"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.apiService.registroMedico(medicoData).subscribe({
+            next: (response) => {
               Swal.fire({
                 title: "Registro exitoso!",
-                text: "El medico a sido registrado.",
+                text: "El medico ha sido registrado.",
                 icon: "success"
               });
+              this.registroExitoso = true; // Marca que el registro fue exitoso
+              this.medicoForm.reset(); // Resetea el formulario
+            },
+            error: (error) => {
+              console.error('Error al registrar médico:', error);
+            },
+            complete: () => {
+              console.log("Tarea realizada");
             }
           });
         }
@@ -77,6 +74,7 @@ export class RegistrarComponent implements OnInit {
       this.medicoForm.markAllAsTouched();
     }
   }
+  
 
   onAreaSelected(event: any): void {
     const especialidadControl = this.medicoForm.get('especialidad');
