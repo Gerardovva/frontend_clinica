@@ -1,70 +1,117 @@
 <div class="container">
     <form [formGroup]="formPacientes" (ngSubmit)="onSubmit()" class="form-group">
-    
-            <div class="mb-3">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" formControlName="nombre" placeholder="Nombre" class="form-control">
-                <div *ngIf="formPacientes.get('nombre')?.invalid && formPacientes.get('nombre')?.touched" class="text-danger">
-                    El nombre es requerido
-                </div>
+
+
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center">Registro paciente</h2>
             </div>
-            <div class="mb-3">
-                <label for="email">Email:</label>
-                <input type="text" id="email" formControlName="email" placeholder="Email" class="form-control">
-                <div *ngIf="formPacientes.get('email')?.invalid && formPacientes.get('email')?.touched" class="text-danger">
-                    Email es requerido
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="telefono">Telefono:</label>
-                <input type="text" id="telefono" formControlName="telefono" placeholder="Telefono" class="form-control">
-                <div *ngIf="formPacientes.get('telefono')?.invalid && formPacientes.get('telefono')?.touched" class="text-danger">
-                    Telefono es requerido
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="documento">Documento:</label>
-                <input type="text" id="documento" formControlName="documento" placeholder="Documento" class="form-control">
-                <div *ngIf="formPacientes.get('documento')?.invalid && formPacientes.get('documento')?.touched" class="text-danger">
-                    El documento es requerido
-                </div>
-            </div>
-            <!-- Repite lo mismo para los otros campos dentro de datos_personales -->
-     
-      
-        <div formGroupName="direccion">
-            <div class="mb-3">
-                <label for="calle">Calle:</label>
-                <input type="text" id="calle" formControlName="calle" placeholder="Calle" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="distrito">Distrito:</label>
-                <input type="text" id="distrito" formControlName="distrito" placeholder="Distrito" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="complemento">Complemento:</label>
-                <input type="text" id="complemento" formControlName="complemento" placeholder="Complemento" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="numero">Numero:</label>
-                <input type="text" id="numero" formControlName="numero" placeholder="Numero" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="ciudad">Ciudad:</label>
-                <input type="text" id="ciudad" formControlName="ciudad" placeholder="Ciudad" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="numero">Estado:</label>
-                <input type="text" id="numero" formControlName="estado" placeholder="estado" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="ciudad">Ciudad:</label>
-                <input type="text" id="ciudad" formControlName="codigoPostal" placeholder="codigo postal" class="form-control">
-            </div>
-            <!-- Repite lo mismo para los otros campos dentro de direccion -->
         </div>
-      
+
+        <!-- datos personales -->
+        <div class="row mb-3">
+            <div class="col-12">
+                <h1>Datos personales</h1>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="nombre" class="form-label"><strong>Nombre:</strong></label>
+            <input type="text" id="nombre" formControlName="nombre" placeholder="Nombre" class="form-control">
+            <div *ngIf="formPacientes.get('nombre')?.invalid && formPacientes.get('nombre')?.touched"
+                class="text-danger">
+                El nombre es requerido
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label"><strong>Email:</strong></label>
+            <input type="text" id="email" formControlName="email" placeholder="Email" class="form-control">
+            <div *ngIf="formPacientes.get('email')?.invalid && formPacientes.get('email')?.touched" class="text-danger">
+                Email es requerido
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="telefono" class="form-label"><strong>Telefono:</strong></label>
+                    <input type="text" id="telefono" formControlName="telefono" placeholder="Telefono"
+                        class="form-control">
+                    <div *ngIf="formPacientes.get('telefono')?.invalid && formPacientes.get('telefono')?.touched"
+                        class="text-danger">
+                        Telefono es requerido
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col">
+                <div class="mb-3">
+                    <label for="documento" class="form-label"><strong>Documento:</strong></label>
+                    <input type="text" id="documento" formControlName="documento" placeholder="Documento"
+                        class="form-control">
+                    <div *ngIf="formPacientes.get('documento')?.invalid && formPacientes.get('documento')?.touched"
+                        class="text-danger">
+                        El documento es requerido
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Direccion -->
+        <div class="row mb-3">
+            <div class="col-12">
+                <h1>Dirección</h1>
+            </div>
+        </div>
+        <div formGroupName="direccion">
+            <div class="row">
+                <div class="col-12"> <!-- Cambio aquí -->
+                    <div class="mb-3">
+                        <label for="calle" class="form-label">Calle:</label>
+                        <input type="text" id="calle" formControlName="calle" placeholder="Calle" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"> <!-- Aquí mantienes la división en dos columnas -->
+                    <div class="mb-3">
+                        <label for="numero" class="form-label">Numero:</label>
+                        <input type="text" id="numero" formControlName="numero" placeholder="Numero"
+                            class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="complemento" class="form-label">Complemento:</label>
+                        <input type="text" id="complemento" formControlName="complemento" placeholder="Complemento"
+                            class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="ciudad" class="form-label">Ciudad:</label>
+                        <input type="text" id="ciudad" formControlName="ciudad" placeholder="Ciudad"
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="col"> <!-- Aquí mantienes la división en dos columnas -->
+                    <div class="mb-3">
+                        <label for="distrito" class="form-label">Distrito:</label>
+                        <input type="text" id="distrito" formControlName="distrito" placeholder="Distrito"
+                            class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="estado" class="form-label">Estado:</label>
+                        <input type="text" id="estado" formControlName="estado" placeholder="Estado"
+                            class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="codigoPostal" class="form-label">Código Postal:</label>
+                        <input type="text" id="codigoPostal" formControlName="codigoPostal" placeholder="Código Postal"
+                            class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <button type="submit" class="btn btn-success mt-3">Enviar</button>
     </form>
 </div>
-

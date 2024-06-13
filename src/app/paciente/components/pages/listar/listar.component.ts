@@ -31,8 +31,8 @@ export class ListarComponent implements OnInit {
         this.totalPages = response.totalPages; // Actualiza el número total de páginas
         this.currentPage = response.number + 1; // Ajusta el número de la página actual
         this.totalElements = response.totalElements; // Actualiza el total de elementos (médicos)
-        console.log("respuesta api: ", { response });
-        console.log("res", this.pacientes);
+        // console.log("respuesta api: ", { response });
+        // console.log("res", this.pacientes);
       }
     })
   }

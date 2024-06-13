@@ -44,8 +44,7 @@ export class RegistrarComponent implements OnInit {
   onSubmit(): void {
     if (this.formPacientes.valid) {
       const medicoData = this.formPacientes.value;
-
-      console.log("Datos formulario ", this.formPacientes.value);
+      // console.log("Datos formulario ", this.formPacientes.value);
       this.consultaService.registrarPacientes(medicoData)
       Swal.fire({
         title: "¿Estás seguro de realizar el registro?",
