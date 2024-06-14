@@ -5,3 +5,14 @@
 .ng-invalid:not(form).ng-touched{
     border:5px solid #ce221f ;
 } */
+
+
+
+
+
+@media(max-width: 575px){
+    .leyendaa{
+        display: none;
+    }
+    
+}

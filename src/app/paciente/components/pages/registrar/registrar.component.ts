@@ -5,7 +5,7 @@ import { Cons } from 'rxjs';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-registrar',
+  selector: 'paciente-registrar',
   templateUrl: './registrar.component.html',
   styleUrls: ['./registrar.component.css']
 })

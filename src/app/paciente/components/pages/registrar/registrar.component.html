@@ -16,7 +16,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="nombre" class="form-label"><strong>Nombre:</strong></label>
+            <label for="nombre" class="form-label  leyendaa"><strong>Nombre:</strong></label>
             <input type="text" id="nombre" formControlName="nombre" placeholder="Nombre" class="form-control">
             <div *ngIf="formPacientes.get('nombre')?.invalid && formPacientes.get('nombre')?.touched"
                 class="text-danger">
@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="mb-3">
-            <label for="email" class="form-label"><strong>Email:</strong></label>
+            <label for="email" class="form-label  leyendaa"><strong>Email:</strong></label>
             <input type="text" id="email" formControlName="email" placeholder="Email" class="form-control">
             <div *ngIf="formPacientes.get('email')?.invalid && formPacientes.get('email')?.touched" class="text-danger">
                 Email es requerido
@@ -33,7 +33,7 @@
         <div class="row">
             <div class="col">
                 <div class="mb-3">
-                    <label for="telefono" class="form-label"><strong>Telefono:</strong></label>
+                    <label for="telefono" class="form-label  leyendaa"><strong>Telefono:</strong></label>
                     <input type="text" id="telefono" formControlName="telefono" placeholder="Telefono"
                         class="form-control">
                     <div *ngIf="formPacientes.get('telefono')?.invalid && formPacientes.get('telefono')?.touched"
@@ -46,7 +46,7 @@
 
             <div class="col">
                 <div class="mb-3">
-                    <label for="documento" class="form-label"><strong>Documento:</strong></label>
+                    <label for="documento" class="form-label  leyendaa"><strong>Documento:</strong></label>
                     <input type="text" id="documento" formControlName="documento" placeholder="Documento"
                         class="form-control">
                     <div *ngIf="formPacientes.get('documento')?.invalid && formPacientes.get('documento')?.touched"
@@ -68,7 +68,7 @@
             <div class="row">
                 <div class="col-12"> <!-- Cambio aquí -->
                     <div class="mb-3">
-                        <label for="calle" class="form-label">Calle:</label>
+                        <label for="calle" class="form-label  leyendaa"><strong>Calle:</strong></label>
                         <input type="text" id="calle" formControlName="calle" placeholder="Calle" class="form-control">
                     </div>
                 </div>
@@ -76,34 +76,34 @@
             <div class="row">
                 <div class="col"> <!-- Aquí mantienes la división en dos columnas -->
                     <div class="mb-3">
-                        <label for="numero" class="form-label">Numero:</label>
+                        <label for="numero" class="form-label  leyendaa"><strong>Numero:</strong></label>
                         <input type="text" id="numero" formControlName="numero" placeholder="Numero"
                             class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="complemento" class="form-label">Complemento:</label>
+                        <label for="complemento" class="form-label  leyendaa"><strong>Complemento:</strong></label>
                         <input type="text" id="complemento" formControlName="complemento" placeholder="Complemento"
                             class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="ciudad" class="form-label">Ciudad:</label>
+                        <label for="ciudad" class="form-label  leyendaa"><strong>Ciudad:</strong></label>
                         <input type="text" id="ciudad" formControlName="ciudad" placeholder="Ciudad"
                             class="form-control">
                     </div>
                 </div>
                 <div class="col"> <!-- Aquí mantienes la división en dos columnas -->
                     <div class="mb-3">
-                        <label for="distrito" class="form-label">Distrito:</label>
+                        <label for="distrito" class="form-label  leyendaa"><strong>Distrito:</strong></label>
                         <input type="text" id="distrito" formControlName="distrito" placeholder="Distrito"
                             class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="estado" class="form-label">Estado:</label>
+                        <label for="estado" class="form-label  leyendaa"><strong>Estado:</strong></label>
                         <input type="text" id="estado" formControlName="estado" placeholder="Estado"
                             class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="codigoPostal" class="form-label">Código Postal:</label>
+                        <label for="codigoPostal" class="form-label  leyendaa"><strong>Código Postal:</strong></label>
                         <input type="text" id="codigoPostal" formControlName="codigoPostal" placeholder="Código Postal"
                             class="form-control">
                     </div>

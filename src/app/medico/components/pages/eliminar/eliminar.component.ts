@@ -97,7 +97,7 @@ export class EliminarComponent {
     if (this.medicoForm.valid) {
       const dataMedico = this.medicoForm.value;
       Swal.fire({
-        title: "¿Está seguro?",
+        title: "¿Está seguro de borrar al medico?",
         text: "¡No podrás revertir esto!",
         icon: "warning",
         showCancelButton: true,
@@ -110,9 +110,10 @@ export class EliminarComponent {
             next: (response) => {
               Swal.fire({
                 title: "¡Eliminado!",
-                text: "Su operacion ha sido eliminado.",
+                text: "Su operacion ha sido exitosa.",
                 icon: "success"
               });
+              this.listaMedico(this.currentPage - 1); // Vuelve a cargar los datos después de la actualización
               this.medicoForm.reset();
             }, error: (error) => {
               console.error("la operacion fallo ", error);

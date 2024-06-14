@@ -106,6 +106,7 @@ export class ActualizarComponent implements OnInit {
           // console.log('Médico actualizado exitosamente:', response);
           // Realiza cualquier otra acción necesaria después de la actualización
           this.registroExitoso = true; // Marca que el registro fue exitoso
+          this.listaMedico(this.currentPage - 1); // Vuelve a cargar los datos después de la actualización
           this.medicoForm.reset(); // Resetea el formulario
          
           this.mostrarModal = false; // Cierra el modal después de guardar los cambios

@@ -39,7 +39,7 @@
 
         <div class="row mt-3">
 
-            <label class="form-label mb-0 leyenda margen">Nombre:</label>
+            <label class="form-label mb-0 leyenda margen"><strong>Nombre:</strong></label>
             <input class=" form-control email margen" type="text" formControlName="nombre" placeholder="Nombre completo" required>
             <span *ngIf="isValidField('nombre')" class="form-text text-danger spann">
                 El campo no puede estar vacio
@@ -51,7 +51,7 @@
             <div class="col-6 col-md-6">
 
                 <select (change)="onAreaSelected($event)" class="form-select" formControlName="especialidad">
-                    <option disabled [value]="">Seleccione una opción</option>
+                    <option disabled [value]=""><strong>Seleccione una opción</strong></option>
                     <option value="ORTOPEDIA">ORTOPEDIA</option>
                     <option value="CARDIOLOGIA">CARDIOLOGIA</option>
                     <option value="GINECOLOGIA">GINECOLOGIA</option>
@@ -86,7 +86,7 @@
 
         <div class="row mt-3">
 
-            <label class="form-label mb-0 leyenda margen">Email:</label>
+            <label class="form-label mb-0 leyenda margen"><strong>Email:</strong></label>
             <input class=" form-control email margen" type="text" formControlName="email" placeholder="Email">
             <span *ngIf="isValidField('email')" class="form-text text-danger spann">
                 campo requerido o formato invalido
@@ -94,7 +94,7 @@
         </div>
 
         <div class="row mt-3">
-            <label class="form-label mb-0 mt-4 leyenda">Telefono:</label>
+            <label class="form-label mb-0 mt-4 leyenda"><strong>Telefono:</strong></label>
             <input class=" form-control mt-2 email " formControlName="telefono" type="number" placeholder="Telefono">
 
             <span *ngIf="isValidField('telefono')" class="form-text text-danger spann">
@@ -114,7 +114,7 @@
                 </div>
             </div>
             <div class="row mt-3">
-                <label class="form-label mb-0 leyenda "> Calle:</label>
+                <label class="form-label mb-0 leyenda "> <strong>Calle:</strong></label>
                 <input class=" form-control email " type="text" placeholder="Calle" formControlName="calle">
                 <span *ngIf="isValidField('direccion')" class="form-text text-danger">
                     campo requerido
@@ -123,7 +123,7 @@
             </div>
             <div class="row">
                 <div class="col-6 mt-3">
-                    <label class="form-label mb-0 leyenda ">Numero:</label>
+                    <label class="form-label mb-0 leyenda ">distrito:</label>
                     <input class="form-control  " formControlName="numero" type="number" placeholder="Numero">
                 </div>
                 <div class="col-6 mt-3">

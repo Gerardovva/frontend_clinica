@@ -21,7 +21,7 @@
           <th scope="col">Especialidad</th>
           <th scope="col">Documento</th>
           <th scope="col">Email</th>
-          <th scope="col">Editar</th>
+          <th scope="col">Eliminar</th>
         </tr>
       </thead>
       <tbody>
@@ -33,7 +33,6 @@
           <td>{{ medico.especialidad }}</td>
           <td>{{ medico.documento }}</td>
           <td>{{ medico.email }}</td>
-          <!-- Agrega un botón "Editar" en cada fila de la tabla -->
           <td>
             <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal"
               (click)="editarMedico(medico)" data-bs-whatever="@mdo"> <i class="fas fa-trash-alt icono-rojo"></i>
