@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-layout',
+  selector: 'oaciente-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css']
 })

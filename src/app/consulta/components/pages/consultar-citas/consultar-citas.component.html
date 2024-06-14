@@ -1,0 +1,26 @@
+<div class="container">
+
+    <h2>Lista de citas</h2>
+    <div class="table-resposive">
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">paciente id</th>
+                    <th scope="col">medico id </th>
+                    <th scope="col">fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let consulta of consultas">
+                    <th>{{consulta.id}}</th>
+                    <th>{{consulta.idPaciente}}</th>
+                    <th>{{consulta.idMedico}}</th>
+                    <th>{{consulta.fecha}}</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

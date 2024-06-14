@@ -21,7 +21,7 @@
           <a class="nav-link text-a " routerLink="/paciente" routerLinkActive="active">PACIENTES</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-a " routerLink="/reportes" routerLinkActive="active">CITAS </a>
+          <a class="nav-link text-a " routerLink="/consulta" routerLinkActive="active">CITAS</a>
         </li>
       </ul>
       <div class="btn-group">
@@ -31,7 +31,7 @@
         </button>
         <ul class="dropdown-menu">
           <li>
-            <a type="button" class="btn btn-cerrar-sesion float-center">CERRAR SESIÓN</a>
+            <a type="button" class="btn btn-cerrar-sesion float-center" (click)="salir()">CERRAR SESIÓN</a>
           </li>
         </ul>
       </div>

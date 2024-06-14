@@ -8,7 +8,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/pages/header/header.component';
 import { InicioComponent } from './components/pages/inicio/inicio.component';
-import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
+
+
+
 
 
 
@@ -18,7 +20,8 @@ import { DashboardComponent } from './components/pages/dashboard/dashboard.compo
     LoginComponent,
     HeaderComponent,
     InicioComponent,
-    DashboardComponent,
+  
+  
  
   ],
   imports: [
