@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environments';
 })
 export class ConsultaService {
 
-  private readonly url: string = environment.paciente.uri;
+  private readonly urlBase: string = environment.paciente.uri;
 
   constructor(
     private http: HttpClient,
@@ -19,7 +19,7 @@ export class ConsultaService {
 
   //listar pacientes 
   listarPaciente(page: number, pageSize: number): Observable<any> {
-    return this.http.get<any>(`${this.url}/pacientes?page=${page}&size=${pageSize}`, {
+    return this.http.get<any>(`${this.urlBase}/pacientes?page=${page}&size=${pageSize}`, {
       headers: {
         'Authorization': `Bearer ${this.localStorage.get("JWTtoken")}`
       }
@@ -29,7 +29,7 @@ export class ConsultaService {
 
   //registrar pacientes
   registrarPacientes(payload: any): Observable<any> {
-    return this.http.post<any>(`${this.url}/pacientes`, payload, {
+    return this.http.post<any>(`${this.urlBase}/pacientes`, payload, {
       headers: {
         'Authorization': `Bearer ${this.localStorage.get("JWTtoken")}`
       }
@@ -39,7 +39,7 @@ export class ConsultaService {
 
   //actualizarPacientes
   actualizarPacientes(payload: any): Observable<any> {
-    return this.http.put<any>(`${this.url}/pacientes`, payload, {
+    return this.http.put<any>(`${this.urlBase}/pacientes`, payload, {
       headers: {
         'Authorization': `Bearer ${this.localStorage.get("JWTtoken")}`
       }
@@ -49,12 +49,21 @@ export class ConsultaService {
 
   //eliminar pacientes
   eliminarPacientes(id: any): Observable<any> {
-    return this.http.delete<any>(`${this.url}/pacientes/${id}`, {
+    return this.http.delete<any>(`${this.urlBase}/pacientes/${id}`, {
       headers: {
         'Authorization': `Bearer ${this.localStorage.get("JWTtoken")}`
       }
     });
 
+  }
+
+
+  obtenerPacienteId(id: any): Observable<any> {
+    return this.http.get<any>(`${this.urlBase}/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${this.localStorage.get("JWTtoken")}`
+      }
+    })
   }
 
 }
