@@ -1,1 +1,39 @@
 
+<div class="container">
+    <h3 class="mt-5">AGENDAR CITA</h3>
+    <hr>
+  
+    <div class="row mt-5">
+      <form [formGroup]="formulario">
+        <div class="col form-group">
+          <select class="form-select" aria-label="Default select example" formControlName="areaSeleccionada">
+            <option value="0">Seleccione nombre del médico</option>
+            <option *ngFor="let medico of medicos" [value]="medico.id">{{ medico.nombre.toUpperCase() }}</option>
+          </select>
+        </div>
+      </form>
+  
+      <div class="col form-group">
+        <select class="form-select" aria-label="Default select example">
+          <option value="0">Seleccione nombre del paciente</option>
+          <option *ngFor="let paciente of pacientes" [value]="paciente.id">{{ paciente.nombre.toUpperCase() }}</option>
+        </select>
+      </div>
+  
+      <div class="col">
+        <label class="form-label">Seleccione fecha y hora</label>
+        <input type="date" class="form-control" id="">
+      </div>
+    </div>
+  
+    <!-- Mostrar paginación para médicos -->
+    <nav *ngIf="totalPages > 1">
+      <ul class="pagination">
+        <li class="page-item" *ngFor="let page of totalPagesArray()">
+          <a class="page-link" href="#" (click)="onPageChange(page)">paginación</a>
+        </li>
+      </ul>
+    </nav>
+  
+  </div>
+  
