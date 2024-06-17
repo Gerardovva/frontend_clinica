@@ -1,9 +1,63 @@
 <div class="container">
 
-    <h2>Lista de citas</h2>
-    <div class="table-resposive">
+    <h2 class="mt-5">Lista de citas</h2>
+    <div class="table-responsive">
 
-        <table class="table table-bordered">
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre Medico</th>
+                    <th scope="col">Especialidad</th>
+                    <th scope="col">Nombre Paciente </th>
+                    <th scope="col">fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let consulta of consultaCitas">
+                    <th  scope="row">{{consulta.id}}</th>
+                    <td>{{consulta.nombreMedico}}</td>
+                    <td>{{consulta.especialidad}}</td>
+                    <td>{{consulta.nombrePaciente}}</td>
+                    <td>{{consulta.fecha}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h3>Buscar paciente por id</h3>
+            <form class="form-group" [formGroup]="formPaciente" (ngSubmit)="PacientePorId()">
+                <label for="id" class="form-label">Ingrese el id del paciente:</label>
+                <input type="number" formControlName="id" class="form-control" id="id" placeholder="Id del paciente">
+                <button type="submit" class="btn btn-primary mt-3">Buscar</button>
+            </form>
+        </div>
+        
+        
+        <div class="col">
+            <h3>Buscar medico por id</h3>
+            <form class="form-group" [formGroup]="formMedico" (ngSubmit)="medicoPorId()">
+                <label for="id" class="form-label">Ingrese el id del medico:</label>
+                <input type="number" formControlName="id" class="form-control" id="id" placeholder="Id del paciente">
+                <button type="submit" class="btn btn-primary mt-3">Buscar</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+
+    <h2 class="mt-3">ID de citas</h2>
+    <div class="table-responsive">
+
+        <table class="table table-bordered mt-3">
             <thead>
                 <tr>
                     <th scope="col">Id</th>
@@ -14,10 +68,10 @@
             </thead>
             <tbody>
                 <tr *ngFor="let consulta of consultas">
-                    <th>{{consulta.id}}</th>
-                    <th>{{consulta.idPaciente}}</th>
-                    <th>{{consulta.idMedico}}</th>
-                    <th>{{consulta.fecha}}</th>
+                    <th  scope="row">{{consulta.id}}</th>
+                    <td>{{consulta.idPaciente}}</td>
+                    <td>{{consulta.idMedico}}</td>
+                    <td>{{consulta.fecha}}</td>
                 </tr>
             </tbody>
         </table>
@@ -26,8 +80,3 @@
 </div>
 
 
-
-<div class="container">
-    
-
-</div>

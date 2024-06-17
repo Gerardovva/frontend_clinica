@@ -6,6 +6,7 @@ import { AgendarCitasComponent } from './components/pages/agendar-citas/agendar-
 import { ConsultarCitasComponent } from './components/pages/consultar-citas/consultar-citas.component';
 import { CancelarCitasComponent } from './components/pages/cancelar-citas/cancelar-citas.component';
 import { LayoutCitasComponent } from './components/pages/layout-citas/layout-citas.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -18,7 +19,8 @@ import { LayoutCitasComponent } from './components/pages/layout-citas/layout-cit
   ],
   imports: [
     CommonModule,
-    ConsultaRoutingModule
+    ConsultaRoutingModule,
+    ReactiveFormsModule,
   ]
 })
 export class ConsultaModule { }

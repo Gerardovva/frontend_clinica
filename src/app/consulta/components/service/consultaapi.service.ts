@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environments';
 
 @Injectable({ providedIn: 'root' })
-export class ConsultaApi {
+export class ConsultaCitasservices {
     private readonly urlBase: string = environment.consulta.uri;
 
     constructor(
@@ -15,6 +15,14 @@ export class ConsultaApi {
 
     obtenerConsultas(): Observable<any> {
         return this.http.get<any>(`${this.urlBase}/consultas`, {
+            headers: {
+                'Authorization': `Bearer ${this.localStorage.get("JWTtoken")}`
+            }
+        })
+    }
+
+    obtenerConsultaCitas(): Observable<any> {
+        return this.http.get<any>(`${this.urlBase}/consultas/citas`, {
             headers: {
                 'Authorization': `Bearer ${this.localStorage.get("JWTtoken")}`
             }

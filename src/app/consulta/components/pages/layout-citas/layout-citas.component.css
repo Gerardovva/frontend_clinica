@@ -1,0 +1,53 @@
+
+
+
+/* Estilos generales */
+body, .container-fluid {
+    background-color: #007bff; /* Color de fondo */
+    color: #ffffff; /* Color del texto */
+}
+
+/* Estilos de la navegación */
+nav {
+    font-size: 20px;
+}
+.color, .nav-link, .btn, .dropdown-menu {
+    color: #ffffff; /* Color del texto */
+}
+
+
+/* Estilos de los enlaces de navegación */
+.nav-link, .dropdown-menu a {
+    color: #ffffff; /* Color del texto de los enlaces */
+}
+
+/* Estilos de los elementos modificados */
+.modificacion {
+    background-color: #007bff; /* Color de fondo del elemento modificado */
+    cursor: pointer;
+}
+
+/* Estilos del botón del menú */
+.colorrr {
+    color: #ffffff;
+}
+
+/* Estilos del menú desplegable */
+.dropdown-menu {
+    background-color: #007bff; /* Cambia el color de fondo del menú desplegable */
+}
+
+.dropdown-menu li {
+    padding: 10px 20px; /* Añade espacio entre elementos del menú desplegable */
+}
+
+.dropdown-menu li:hover {
+    background-color: #007bff; /* Cambia el color de fondo al pasar el ratón por encima */
+}
+
+/* Estilos para dispositivos pequeños */
+@media (max-width: 575px) {
+    nav {
+        font-size: 18px;
+    } 
+}

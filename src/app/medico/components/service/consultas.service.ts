@@ -53,7 +53,7 @@ export class ApiService {
 
 
   obtenerMedicoId(id: any): Observable<any> {
-    return this.http.get<any>(`${this.urlBase}/${id}`, {
+    return this.http.get<any>(`${this.urlBase}/medicos/${id}`, {
       headers: {
         'Authorization': `Bearer ${this.localStorage.get("JWTtoken")}`
       }

@@ -59,7 +59,7 @@ export class ConsultaService {
 
 
   obtenerPacienteId(id: any): Observable<any> {
-    return this.http.get<any>(`${this.urlBase}/${id}`, {
+    return this.http.get<any>(`${this.urlBase}/pacientes/${id}`, {
       headers: {
         'Authorization': `Bearer ${this.localStorage.get("JWTtoken")}`
       }

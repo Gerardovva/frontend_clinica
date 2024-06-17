@@ -1,2 +1,37 @@
-
-<router-outlet> </router-outlet>
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-between align-items-center">
+        <h1 class="color">Bienvenido</h1>
+        <button class="navbar-toggler colorrr" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation" (click)="toggleNavbar()">
+          <i class="fa-solid fa-bars colorrr"></i>
+        </button>
+      </div>
+      <div class="col-12">
+        <nav class="navbar navbar-expand-lg navbar-toggler">
+          <div class="container-fluid">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav" #navbarNav>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link text-a" routerLink="/inicio" routerLinkActive="active">Inicio</a>
+                </li>
+                <li class="nav-item dropdown float-lg-right" style="color: white;" #sidenav>
+                  <a class="nav-link dropdown-toggle " id="navbarDropdown" role="button"
+                     data-bs-toggle="dropdown" aria-expanded="false">
+                    Citas
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li class="modificacion" style="cursor: pointer;" *ngFor="let item of items"
+                        [routerLink]="item.url">{{ item.label }}</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+  
