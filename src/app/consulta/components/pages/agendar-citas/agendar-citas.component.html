@@ -1,39 +1,123 @@
-
-<div class="container">
-    <h3 class="mt-5">AGENDAR CITA</h3>
+<div class="container mt-5">
+  <form *ngIf="formCita" [formGroup]="formCita" (ngSubmit)="agendar()">
+    <h2 class="text-center">Agendar cita</h2>
     <hr>
-  
-    <div class="row mt-5">
-      <form [formGroup]="formulario">
-        <div class="col form-group">
-          <select class="form-select" aria-label="Default select example" formControlName="areaSeleccionada">
-            <option value="0">Seleccione nombre del médico</option>
-            <option *ngFor="let medico of medicos" [value]="medico.id">{{ medico.nombre.toUpperCase() }}</option>
-          </select>
-        </div>
-      </form>
-  
-      <div class="col form-group">
-        <select class="form-select" aria-label="Default select example">
-          <option value="0">Seleccione nombre del paciente</option>
-          <option *ngFor="let paciente of pacientes" [value]="paciente.id">{{ paciente.nombre.toUpperCase() }}</option>
-        </select>
-      </div>
-  
-      <div class="col">
-        <label class="form-label">Seleccione fecha y hora</label>
-        <input type="date" class="form-control" id="">
+    <div class="form-group">
+      <label class="form-label">Paciente</label>
+      <select class="form-control" formControlName="idPaciente">
+        <option value="">Selecciona un paciente</option>
+        <option *ngFor="let paciente of pacientes" [value]="paciente.id">{{ paciente.nombre }}</option>
+      </select>
+      <div *ngIf="formCita.get('idPaciente')?.invalid && formCita.get('idPaciente')?.touched" class="text-danger">
+        El Paciente es requerido.
       </div>
     </div>
-  
-    <!-- Mostrar paginación para médicos -->
-    <nav *ngIf="totalPages > 1">
-      <ul class="pagination">
-        <li class="page-item" *ngFor="let page of totalPagesArray()">
-          <a class="page-link" href="#" (click)="onPageChange(page)">paginación</a>
-        </li>
-      </ul>
-    </nav>
-  
+
+    <div class="form-group">
+      <label class="form-label">Médico</label>
+      <select class="form-control" formControlName="idMedico">
+        <option value="">Selecciona un médico</option>
+        <option *ngFor="let medico of medicos" [value]="medico.id">{{ medico.nombre }}</option>
+      </select>
+      <div *ngIf="formCita.get('idMedico')?.invalid && formCita.get('idMedico')?.touched" class="text-danger">
+        El Médico es requerido.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Fecha y Hora</label>
+      <input class="form-control" type="datetime-local" formControlName="fecha">
+      <div *ngIf="formCita.get('fecha')?.invalid && formCita.get('fecha')?.touched" class="text-danger">
+        La Fecha y Hora es requerida.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Agendar</button>
+  </form>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <!-- medico -->
+    <div class="col-md-6 mb-4">
+      <h3>Medicos</h3>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead class="table-primary">
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Especialidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let medico of medicos">
+              <td>{{ medico.id }}</td>
+              <td>{{ medico.nombre }}</td>
+              <td>{{ medico.especialidad }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- Controles de paginación -->
+        <div class="paginacion">
+          <nav aria-label="Page navigation border">
+            <ul class="pagination justify-content-center">
+              <li class="page-item" [class.disabled]="currentPageMedico === 1">
+                <a class="page-link" tabindex="-1" (click)="onPageChangeMedico(currentPageMedico - 1)">Anterior</a>
+              </li>
+              <li class="page-item" *ngFor="let page of totalPagesArrayMedico()"
+                [class.active]="page === currentPageMedico">
+                <a class="page-link" (click)="onPageChangeMedico(page)">{{ page }}</a>
+              </li>
+              <li class="page-item" [class.disabled]="currentPageMedico === totalPagesMedico">
+                <a class="page-link" (click)="onPageChangeMedico(currentPageMedico + 1)">Siguiente</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- paciente -->
+    <div class="col-md-6 mb-4">
+      <h3>Pacientes</h3>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead class="table-primary">
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Teléfono</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let paciente of pacientes">
+              <td>{{ paciente.id }}</td>
+              <td>{{ paciente.nombre }}</td>
+              <td>{{ paciente.telefono }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- Controles de paginación paciente -->
+        <div class="paginacion">
+          <nav aria-label="Page navigation border">
+            <ul class="pagination justify-content-center">
+              <li class="page-item" [class.disabled]="currentPagePaciente === 1">
+                <a class="page-link" tabindex="-1" (click)="onPageChangePaciente(currentPagePaciente - 1)">Anterior</a>
+              </li>
+              <li class="page-item" *ngFor="let page of totalPagesArrayPaciente()"
+                [class.active]="page === currentPagePaciente">
+                <a class="page-link" (click)="onPageChangePaciente(page)">{{ page }}</a>
+              </li>
+              <li class="page-item" [class.disabled]="currentPagePaciente === totalPagesPaciente">
+                <a class="page-link" (click)="onPageChangePaciente(currentPagePaciente + 1)">Siguiente</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
   </div>
-  
+</div>
+

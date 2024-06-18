@@ -28,4 +28,13 @@ export class ConsultaCitasservices {
             }
         })
     }
+
+
+    agendarCita(payload: any): Observable<any> {
+        return this.http.post<any>(`${this.urlBase}/consultas`, payload, {
+            headers: {
+                'Authorization': `Bearer ${this.localStorage.get("JWTtoken")}`
+            }
+        })
+    }
 }
