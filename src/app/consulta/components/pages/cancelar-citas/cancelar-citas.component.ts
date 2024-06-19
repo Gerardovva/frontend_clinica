@@ -90,8 +90,8 @@ export class CancelarCitasComponent implements OnInit {
         text: 'No podrás revertirlo',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Sí, cancelar cita',
-        cancelButtonText: 'No, cancelar operación',
+        confirmButtonText: 'Sí, cancelar',
+        cancelButtonText: 'No, cancelar',
         reverseButtons: true
       }).then((result) => {
         if (result.isConfirmed) {

@@ -27,6 +27,7 @@
     <div class="form-group">
       <label class="form-label">Fecha y Hora</label>
       <input class="form-control" type="datetime-local" formControlName="fecha">
+  
       <div *ngIf="formCita.get('fecha')?.invalid && formCita.get('fecha')?.touched" class="text-danger">
         La Fecha y Hora es requerida.
       </div>
