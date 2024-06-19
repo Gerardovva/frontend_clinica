@@ -50,4 +50,17 @@ nav {
     nav {
         font-size: 18px;
     } 
+    .color{
+        padding: 30px;
+        margin-top: 30px;
+    }
+    .dropdown-menu li:hover {
+        background-color: black; /* Cambia el color de fondo al pasar el ratón por encima */
+    }
+    .modificacion {
+        background-color: #ffffff; /* Color de fondo del elemento modificado */
+        cursor: pointer;
+        color: black;
+    }
+    
 }

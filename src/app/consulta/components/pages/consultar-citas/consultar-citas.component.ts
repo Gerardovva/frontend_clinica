@@ -10,11 +10,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./consultar-citas.component.css']
 })
 export class ConsultarCitasComponent implements OnInit {
+  onSubmit() {
+    throw new Error('Method not implemented.');
+  }
 
   consultas: any[] = [];
   consultaCitas: any[] = [];
   pacientes: any[] = [];
   medicos: any[] = [];
+  doctorForm!: FormGroup;
+  pacienteForm!:FormGroup;
 
   formPaciente!: FormGroup;
   formMedico!: FormGroup;
@@ -37,7 +42,36 @@ export class ConsultarCitasComponent implements OnInit {
     });
 
     this.formMedico = this.fb.group({
-      id: ['', Validators.required]
+      id: ['', [Validators.required]]
+    });
+
+    this.doctorForm = this.fb.group({
+      nombre: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      telefono: ['', Validators.required],
+      especialidad: ['', Validators.required],
+      direccion: this.fb.group({
+        calle: ['', Validators.required],
+        distrito: ['', Validators.required],
+        ciudad: ['', Validators.required],
+        numero: ['', Validators.required],
+        complemento: ['']
+      })
+    });
+
+
+    this.pacienteForm = this.fb.group({
+      nombre: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      telefono: ['', Validators.required],
+      especialidad: ['', Validators.required],
+      direccion: this.fb.group({
+        calle: ['', Validators.required],
+        distrito: ['', Validators.required],
+        ciudad: ['', Validators.required],
+        numero: ['', Validators.required],
+        complemento: ['']
+      })
     });
 
   }
@@ -58,36 +92,37 @@ export class ConsultarCitasComponent implements OnInit {
 
 
   PacientePorId() {
-    const id = this.formPaciente.value.id; // Obtén el valor del campo 'id' del formulario
+    const id = this.formPaciente.value.id;
     this.consultaService.obtenerPacienteId(id).subscribe({
       next: (response) => {
-        this.pacientes = response.nombre
-        // console.log("Id de paciente es: ", response);
-        // console.log("nombre paciente: ", this.pacientes);
-
+        this.pacientes = [response]; // Aquí asegúrate de asignar un array con el objeto del paciente
       },
       error: (error) => {
         console.error("Error al obtener los datos", error);
+        this.pacientes = []; // Limpiar el array si no se encontró ningún paciente
       }
     });
   }
 
 
   medicoPorId() {
+   if(this.formMedico.valid){
     const id = this.formMedico.value.id;
     this.apiService.obtenerMedicoId(id).subscribe({
-      next: (response) => {
-        this.medicos = response.nombre;
-        // console.log("medico por id: ", response);
-        // console.log("nombre medico", this.medicos);
+        next: (response) => {
+            this.medicos = [response]; // Asigna directamente la respuesta del servicio al objeto medicos
+        },
+        error: (error) => {
+            console.error("Error al obtener los datos", error);
+            this.medicos = []; // Limpiar el objeto si no se encontró ningún médico
+        }
+    });
+   }else{
+    this.formMedico.markAllAsTouched()
+   }
+}
 
 
-      }, error: (error) => {
-        console.error("error al optener los datos", error);
-
-      }
-    })
-  }
 
 
   citas() {

@@ -15,7 +15,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let consulta of consultaCitas">
-                    <th  scope="row">{{consulta.id}}</th>
+                    <th scope="row">{{consulta.id}}</th>
                     <td>{{consulta.nombreMedico}}</td>
                     <td>{{consulta.especialidad}}</td>
                     <td>{{consulta.nombrePaciente}}</td>
@@ -31,21 +31,26 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col">
-            <h3>Buscar paciente por id</h3>
+            <h3>Buscar paciente por ID</h3>
             <form class="form-group" [formGroup]="formPaciente" (ngSubmit)="PacientePorId()">
                 <label for="id" class="form-label">Ingrese el id del paciente:</label>
                 <input type="number" formControlName="id" class="form-control" id="id" placeholder="Id del paciente">
-                <button type="submit" class="btn btn-primary mt-3">Buscar</button>
+                <button type="submit" class="btn btn-primary mt-3" data-bs-toggle="modal"
+                    data-bs-target="#modalPaciente">Buscar</button>
             </form>
         </div>
-        
-        
+
+
         <div class="col">
-            <h3>Buscar medico por id</h3>
+            <h3>Buscar médico por ID</h3>
             <form class="form-group" [formGroup]="formMedico" (ngSubmit)="medicoPorId()">
                 <label for="id" class="form-label">Ingrese el id del medico:</label>
                 <input type="number" formControlName="id" class="form-control" id="id" placeholder="Id del paciente">
-                <button type="submit" class="btn btn-primary mt-3">Buscar</button>
+                <div *ngIf="formMedico.get('id')?.invalid && formMedico.get('di')?.touched" class="text-danger">
+                    El id es requerido
+                  </div>
+                <button type="submit" class="btn btn-primary mt-3" data-bs-toggle="modal"
+                    data-bs-target="#modalMedico">Buscar</button>
             </form>
         </div>
 
@@ -68,7 +73,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let consulta of consultas">
-                    <th  scope="row">{{consulta.id}}</th>
+                    <th scope="row">{{consulta.id}}</th>
                     <td>{{consulta.idPaciente}}</td>
                     <td>{{consulta.idMedico}}</td>
                     <td>{{consulta.fecha}}</td>
@@ -79,4 +84,65 @@
 
 </div>
 
+
+
+<!-- modal para id paciente  -->
+<div class="modal fade" id="modalPaciente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Datos del paciente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div *ngIf="pacientes.length > 0">
+                    <p><strong>Nombre:</strong> {{ pacientes[0].nombre }}</p>
+                    <p><strong>Email:</strong> {{ pacientes[0].email }}</p>
+                    <p><strong>Documento:</strong> {{ pacientes[0].documento }}</p>
+                    <p><strong>Teléfono:</strong> {{ pacientes[0].telefono }}</p>
+                    <p><strong>Dirección:</strong> {{ pacientes[0].direccion.calle }}, {{
+                        pacientes[0].direccion.distrito }}, {{ pacientes[0].direccion.ciudad }}, {{
+                        pacientes[0].direccion.numero }}</p>
+                    <p><strong>Complemento:</strong> {{ pacientes[0].direccion.complemento }}</p>
+                </div>
+                <div *ngIf="pacientes.length === 0">
+                    <p>No se encontraron datos para el paciente con el ID ingresado.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal para datos del médico -->
+<div class="modal fade" id="modalMedico" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Datos del médico</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div *ngIf="medicos.length > 0">
+                    <p><strong>Nombre:</strong> {{ medicos[0].nombre }}</p>
+                    <p><strong>Email:</strong> {{ medicos[0].email }}</p>
+                    <p><strong>Teléfono:</strong> {{ medicos[0].telefono }}</p>
+                    <p><strong>Especialidad:</strong> {{ medicos[0].especialidad }}</p>
+                    <p><strong>Dirección:</strong> {{ medicos[0].direccion.calle }}, {{ medicos[0].direccion.distrito }},
+                        {{ medicos[0].direccion.ciudad }}, {{ medicos[0].direccion.numero }}</p>
+                    <p><strong>Complemento:</strong> {{ medicos[0].direccion.complemento }}</p>
+                </div>
+                <div *ngIf="medicos.length === 0">
+                    <p>No se encontraron datos para el médico con el ID ingresado.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
