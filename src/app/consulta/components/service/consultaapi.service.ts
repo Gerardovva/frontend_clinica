@@ -1,6 +1,6 @@
 import { LocalStorageService } from 'src/app/components/services/localstorage.service';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environments';
 
@@ -37,4 +37,17 @@ export class ConsultaCitasservices {
             }
         })
     }
+
+
+    cancelarCita(payload: any): Observable<any> {
+        const options = {
+          headers: new HttpHeaders({
+            'Authorization': `Bearer ${this.localStorage.get('JWTtoken')}`,
+            'Content-Type': 'application/json'
+          }),
+          body: payload // Aquí se pasa el cuerpo como parte de las opciones
+        };
+    
+        return this.http.delete<any>(`${this.urlBase}/consultas`, options);
+      }
 }

@@ -1,5 +1,85 @@
 <div class="container">
-  <h1>Cancelacion de citas</h1>
+
+  <!-- Formulario reactivo para la búsqueda -->
+  <form [formGroup]="filtroForm">
+    <div class="form-group mt-3">
+      <h3 class="">Buscar cita:</h3>
+      <input type="text" class="form-control" placeholder="Buscar por nombre de médico o paciente" formControlName="filtroTexto" (keyup)="buscarCitas()">
+    </div>
+  </form>
+
+  <h2 class="mt-5">Lista de citas</h2>
+  <div class="table-responsive">
+
+    <table class="table table-bordered mt-3">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nombre Medico</th>
+          <th scope="col">Especialidad</th>
+          <th scope="col">Nombre Paciente</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Cancelar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let consulta of consultaCitas">
+          <th scope="row">{{consulta.id}}</th>
+          <td>{{consulta.nombreMedico}}</td>
+          <td>{{consulta.especialidad}}</td>
+          <td>{{consulta.nombrePaciente}}</td>
+          <td>{{consulta.fechaFormateada}}</td>
+          <td>
+            <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#cancelar" (click)="citaCancelada(consulta)">Cancelar
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 </div>
-  
+
+
+<!-- modal cancelamiento -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="cancelar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cancelar Cita</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <h1>Cancelar Cita</h1>
+          <form [formGroup]="formCitaCancelada" (ngSubmit)="listaCitas()">
+            <div class="form-group">
+              <label for="idConsulta" class="form-label">ID de la Cita</label>
+              <input id="idConsulta" class="form-control" type="number" placeholder="ID de la cita" formControlName="idConsulta" readonly>
+            </div>
+            <label for="motivo" class="form-label">Motivo de cancelación</label>
+            <div class="form-group">
+              <select id="motivo" class="form-select" formControlName="motivo">
+                <option disabled selected value="0">Seleccione una opción</option>
+                <option value="PACIENTE_DESISTIO">Paciente desistió</option>
+                <option value="MEDICO_CANCELO">Médico canceló</option>
+                <option value="OTROS">Otros</option>
+              </select>
+              <div *ngIf="formCitaCancelada.get('motivo')?.invalid && formCitaCancelada.get('motivo')?.touched" class="text-danger">
+                El motivo es requerido
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-danger" [disabled]="formCitaCancelada.invalid">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

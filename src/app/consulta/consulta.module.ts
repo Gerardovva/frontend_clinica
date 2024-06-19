@@ -7,6 +7,7 @@ import { ConsultarCitasComponent } from './components/pages/consultar-citas/cons
 import { CancelarCitasComponent } from './components/pages/cancelar-citas/cancelar-citas.component';
 import { LayoutCitasComponent } from './components/pages/layout-citas/layout-citas.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common'; // Asegúrate de importar DatePipe
 
 
 
@@ -22,6 +23,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ConsultaRoutingModule,
     ReactiveFormsModule,
     FormsModule
+  ],
+  providers: [
+    DatePipe // Agrega DatePipe en la lista de proveedores
   ]
 })
 export class ConsultaModule { }

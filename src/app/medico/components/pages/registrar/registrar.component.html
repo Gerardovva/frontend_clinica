@@ -1,27 +1,4 @@
-<!-- <form [formGroup]="medicoForm" (ngSubmit)="registrarMedico()">
-    <input type="text" formControlName="nombre" placeholder="Nombre">
-    <input type="email" formControlName="email" placeholder="Email">
-    <input type="number" formControlName="telefono" placeholder="Teléfono">
-    <input type="number" formControlName="documento" placeholder="Documento">
-  
-    <select (change)="onAreaSelected($event)" class="form-select" formControlName="especialidad">
-      <option disabled [value]="">Seleccione una opción</option>
-      <option value="ORTOPEDIA">ORTOPEDIA</option>
-      <option value="CARDIOLOGIA">CARDIOLOGIA</option>
-      <option value="GINECOLOGIA">GINECOLOGIA</option>
-      <option value="PEDIATRIA">PEDIATRIA</option>
-    </select>
-  
-    <div formGroupName="direccion">
-      <input type="text" formControlName="calle" placeholder="Calle">
-      <input type="text" formControlName="distrito" placeholder="Distrito">
-      <input type="text" formControlName="ciudad" placeholder="Ciudad">
-      <input type="number" formControlName="numero" placeholder="Número">
-      <input type="text" formControlName="complemento" placeholder="Complemento">
-    </div>
-  
-    <button type="submit" [disabled]="medicoForm.invalid">Enviar</button>
-  </form> -->
+
 
   <div class="container ">
     <form [formGroup]="medicoForm" (ngSubmit)="registrarMedico()">
