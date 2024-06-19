@@ -31,10 +31,12 @@
         </button>
         <ul class="dropdown-menu">
           <li>
-            <a type="button" class="btn btn-cerrar-sesion float-center" (click)="salir()">CERRAR SESIÓN</a>
+            <!-- Cambiado 'a' por 'button' y agregado el atributo (click) para Angular -->
+            <button type="button" class="btn btn-danger float-center" (click)="salir()">CERRAR SESIÓN</button>
           </li>
         </ul>
       </div>
+      
     </div>
   </div>
 </nav>

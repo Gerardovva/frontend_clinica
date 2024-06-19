@@ -65,9 +65,9 @@
             <div class="form-group">
               <select id="motivo" class="form-select" formControlName="motivo">
                 <option disabled selected value="0">Seleccione una opción</option>
-                <option value="PACIENTE_DESISTIO">Paciente desistió</option>
-                <option value="MEDICO_CANCELO">Médico canceló</option>
-                <option value="OTROS">Otros</option>
+                <option value="PACIENTE_DESISTIO">PACIENTE_DESISTIO</option>
+                <option value="MEDICO_CANCELO">MEDICO_CANCELO</option>
+                <option value="OTROS">OTROS</option>
               </select>
               <div *ngIf="formCitaCancelada.get('motivo')?.invalid && formCitaCancelada.get('motivo')?.touched" class="text-danger">
                 El motivo es requerido
