@@ -1,3 +1,4 @@
+import { MedicoI } from '../../interface/medico.interface';
 import { ApiService } from './../../service/consultas.service'; // Importación del servicio ApiService
 import { Component, OnInit } from '@angular/core'; // Importación de Component y OnInit desde Angular core
 

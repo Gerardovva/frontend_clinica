@@ -25,12 +25,12 @@ export interface Pageable {
     pageSize:   number;
     sort:       Sort;
     offset:     number;
-    paged:      boolean;
     unpaged:    boolean;
+    paged:      boolean;
 }
 
 export interface Sort {
+    unsorted: boolean;
     empty:    boolean;
     sorted:   boolean;
-    unsorted: boolean;
 }
