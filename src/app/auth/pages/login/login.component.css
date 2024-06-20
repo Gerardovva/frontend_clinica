@@ -20,22 +20,23 @@
 
 .password-toggle {
     position: relative;
-  }
-  
-  .password-toggle .toggle-btn {
+}
+
+.password-toggle .toggle-btn {
     position: absolute;
-    right: 10px; /* Ajusta la posición del botón a tu gusto */
+    right: 10px;
+    /* Ajusta la posición del botón a tu gusto */
     top: 50%;
     transform: translateY(-50%);
     background-color: transparent;
     border: none;
     cursor: pointer;
-  }
-  
-  .password-toggle .toggle-btn:focus {
+}
+
+.password-toggle .toggle-btn:focus {
     outline: none;
-  }
-  
+}
+
 
 @media (min-width: 768px) {
     .gradient-form {

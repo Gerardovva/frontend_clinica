@@ -1,4 +1,3 @@
-
 <section class="h-100 gradient-form" style="background-color: #eee;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -12,28 +11,27 @@
                   <img src="assets/imagen2.png" style="width: 185px;" alt="logo">
                   <h4 class="mt-1 mb-5 pb-1">Somos el Grupo Especializado Salud de Oro</h4>
                 </div>
-
-
                 <form [formGroup]="form" (ngSubmit)="onSubmit()">
                   <p>Por favor inicia sesión en tu cuenta</p>
 
-                  <div  class="form-outline mb-4">
+                  <div class="form-outline mb-4">
                     <label class="text-center ">Usuario</label>
-                      <input type="text" id="login" class="fadeIn second form-control" formControlName="login"
+                    <input type="text" id="login" class="fadeIn second form-control" formControlName="login"
                       placeholder="ejemplo123@gmail.com">
-                      <span  *ngIf="isValidField('login')"  class="form-text text-danger">
-                        Campo requerido o formato ivalido
-                      </span>
-                    </div>
-                
+                    <span *ngIf="isValidField('login')" class="form-text text-danger">
+                      Campo requerido o formato ivalido
+                    </span>
+                  </div>
+
                   <div class="form-outline mb-4">
                     <label for="clave">Contraseña</label>
                     <div class="password-toggle">
-                      <input type="{{ showPassword ? 'text' : 'password' }}" id="clave" class="fadeIn third form-control"
-                             formControlName="clave" placeholder="*********">
+                      <input type="{{ showPassword ? 'text' : 'password' }}" id="clave"
+                        class="fadeIn third form-control" formControlName="clave" placeholder="*********">
                       <button type="button" class="toggle-btn" (click)="togglePasswordVisibility()">
                         <span *ngIf="!showPassword">
-                          <i class="fa-solid fa-eye-slash"></i> <!-- Icono de ojo tachado cuando la contraseña es visible -->
+                          <i class="fa-solid fa-eye-slash"></i>
+                          <!-- Icono de ojo tachado cuando la contraseña es visible -->
                         </span>
                         <span *ngIf="showPassword">
                           <i class="fa-solid fa-eye"></i> <!-- Icono de ojo cuando la contraseña está oculta -->
@@ -44,36 +42,32 @@
                       La contraseña es requerida
                     </span>
                   </div>
-                
-                  <input type="submit" class="fadeIn fourth btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 mt-5 custom-btn"
-                         value="Iniciar sesión">
-                
+
+                  <input type="submit"
+                    class="fadeIn fourth btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 mt-5 custom-btn"
+                    value="Iniciar sesión">
+
                   <div class="text-center" *ngIf="spinner">
                     <div class="spinner-border text-primary" role="status">
                       <span class="sr-only">Loading...</span>
                     </div>
                   </div>
-                
+
                   <div class="d-flex align-items-center justify-content-center pb-4">
                     <p class="mb-0 me-2">¿No tienes una cuenta?</p>
                     <button type="button" class="btn btn-outline-danger" [routerLink]="['/crear']">Crear</button>
                   </div>
                 </form>
-                
-                
-              
-      
-
               </div>
             </div>
             <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
               <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                 <h4 class="mb-4">Somos más que una simple clínica</h4>
-                <p class="small mb-0">"En nuestra clínica, te ofrecemos mucho más que atención médica ordinaria.
+                <p class="small mb-0">En nuestra clínica, te ofrecemos mucho más que atención médica ordinaria.
                   Nuestro compromiso con tu salud va más allá: combinamos experiencia, dedicación y un cuidado
                   excepcional para ti y tu bienestar.
                   Nos esforzamos por brindarte lo mejor en cada consulta, con un enfoque humano y personalizado que te
-                  hace sentir seguro y bien atendido."</p>
+                  hace sentir seguro y bien atendido.</p>
               </div>
             </div>
           </div>
@@ -82,4 +76,3 @@
     </div>
   </div>
 </section>
-
