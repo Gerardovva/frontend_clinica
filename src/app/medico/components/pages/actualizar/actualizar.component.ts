@@ -1,3 +1,4 @@
+import { ValidatorsService } from './../../service/validator.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from './../../service/consultas.service';
 import { Component, Input, OnInit } from '@angular/core';
@@ -26,6 +27,7 @@ export class ActualizarComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private fb: FormBuilder,
+    private validatorsService:ValidatorsService
   ) { }
 
   ngOnInit(): void {
@@ -36,18 +38,18 @@ export class ActualizarComponent implements OnInit {
 
     // Inicializa medicoForm aquí
     this.medicoForm = this.fb.group({
-      id: [''],
-      nombre: [''],
-      telefono: [''],
-      especialidad: [''],
-      email: [''],
-      documento: [''],
+      id: ['',[Validators.required]],
+      nombre: ['',[Validators.required]],
+      telefono: ['',[Validators.required]],
+      especialidad: ['',[Validators.required]],
+      email: ['',Validators.required],
+      documento: ['',[Validators.required]],
       direccion: this.fb.group({
-        calle: [''],
-        distrito: [''],
-        ciudad: [''],
-        numero: [''],
-        complemento: ['']
+        calle: ['',Validators.required],
+        distrito: ['',[Validators.required]],
+        ciudad: ['',[Validators.required]],
+        numero: ['',[Validators.required]],
+        complemento: ['',[Validators.required]]
 
       })
     });
@@ -141,6 +143,10 @@ export class ActualizarComponent implements OnInit {
     // Genera un array con una longitud igual al número total de páginas.
     // Para cada elemento del array, asigna el número de página correspondiente.
     return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+  }
+
+  validarFormulario(campo:string){
+    return this.validatorsService.isValidField(this.formActualizarMedico,campo)
   }
 
 }
